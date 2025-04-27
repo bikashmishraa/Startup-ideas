@@ -11,7 +11,7 @@ export default async function Navbar(){
                     <Link href='/startup/create'>Create</Link>
                     <form action={async () =>{
                         'use server';
-                        await signOut()
+                        await signOut({redirectTo:''})
                     }}>
                     <button type="submit">Logout</button>
                     </form>
@@ -20,6 +20,8 @@ export default async function Navbar(){
                     </Link>
                 </>
             ):(
+                <>
+                
                 <form action={async() => {
                     'use server';
                     await signIn('github');
@@ -27,6 +29,13 @@ export default async function Navbar(){
                     <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Login with GitHub</button>
 
                 </form>
+                <form action={async() => {
+                    'use server';
+                    await signIn('google');
+                }}>
+                    <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded">Login with Google</button>
+                </form>
+                </>
             )}
 
            </div>
